@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="app">
+        <table class="table table-hover" :data="orderList">
+            <thead>
+            <tr>
+                <th>工单号</th>
+                <th>工单状态</th>
+                <th>工单类型</th>
+                <th>订单单号</th>
+                <th>部门</th>
+                <th>性质</th>
+                <th>物料编码</th>
+                <th>物料名称</th>
+                <th>订单数量</th>
+                <th>工单数量</th>
+                <th>完工数量</th>
+                <th>下单日期</th>
+            </tr>
+            </thead>
+            <tbody id='tbdy'>
+            <tr v-for="order in orderList">
+                <td v-model="order.id">{{order.id}}</td>
+                <td v-model="order.order_status">{{order.order_status}}</td>
+                <td v-model="order.order_type">{{order.order_type}}</td>
+                <td v-model="order.order_odd">{{order.order_odd}}</td>
+                <td v-model="order.dept">{{order.dept}}</td>
+                <td v-model="order.nature">{{order.nature}}</td>
+                <td v-model="order.material_code">{{order.material_code}}</td>
+                <td v-model="order.material_name">{{order.material_name}}</td>
+                <td v-model="order.order_number">{{order.order_number}}</td>
+                <td v-model="order.w_order_number">{{order.w_order_number}}</td>
+                <td v-model="order.end_number">{{order.end_number}}</td>
+                <td v-model="order.place_data">{{order.place_data}}</td>
+                <td ><span v-on:click="del(order)" style="color: #b73333;">删除</span></td>
+                <td><span v-on:click="upd(order)" style="color: #334db7;">修改</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+    <el-table-column label="操作" width="160">
+        <template slot-scope="scope">
+            <el-button size="mini" type="primary">编辑</el-button>
+            <el-button size="mini" type="danger">删除</el-button>
+        </template>
+    </el-table-column>
+
+    <div style="margin: 0 auto;width: 1200px">
+        <div style="width: 500px;display: inline-block">
+            <h1>修改数据</h1>
+            <input type="text" v-model="item.id" class="form-control" id="name1" placeholder="请输入工单号">
+            <input type="text" v-model="item.order_status" class="form-control" id="name2" placeholder="请输入工单状态">
+            <input type="text" v-model="item.order_type" class="form-control" id="name3" placeholder="请输入工单类型">
+            <input type="text" v-model="item.order_odd" class="form-control" id="name4" placeholder="请输入订单单号">
+            <input type="text" v-model="item.dept" class="form-control" id="name5" placeholder="请输入部门">
+            <input type="text" v-model="item.nature" class="form-control" id="name6" placeholder="请输入性质">
+            <input type="text" v-model="item.material_code" class="form-control" id="name8" placeholder="请输入物料编码">
+            <input type="text" v-model="item.material_name" class="form-control" id="name9" placeholder="请输入物料名称">
+            <input type="text" v-model="item.order_number" class="form-control" id="name10" placeholder="请输入订单数量">
+            <input type="text" v-model="item.w_order_number" class="form-control" id="name11" placeholder="请输入工单数量">
+            <input type="text" v-model="item.end_number" class="form-control" id="name12" placeholder="请输入完工数量">
+            <button v-on:click="updta()">提交</button>
+        </div>
+
+        <div style="width: 500px;display: inline-block;margin:50px">
+            <h1>新增数据</h1>
+            <input type="text" v-model="item.id" class="form-control" id="name1" placeholder="请输入工单号">
+            <input type="text" v-model="item.order_status" class="form-control" id="name2" placeholder="请输入工单状态">
+            <input type="text" v-model="item.order_type" class="form-control" id="name3" placeholder="请输入工单类型">
+            <input type="text" v-model="item.order_odd" class="form-control" id="name4" placeholder="请输入订单单号">
+            <input type="text" v-model="item.dept" class="form-control" id="name5" placeholder="请输入部门">
+            <input type="text" v-model="item.nature" class="form-control" id="name6" placeholder="请输入性质">
+            <input type="text" v-model="item.material_code" class="form-control" id="name8" placeholder="请输入物料编码">
+            <input type="text" v-model="item.material_name" class="form-control" id="name9" placeholder="请输入物料名称">
+            <input type="text" v-model="item.order_number" class="form-control" id="name10" placeholder="请输入订单数量">
+            <input type="text" v-model="item.w_order_number" class="form-control" id="name11" placeholder="请输入工单数量">
+            <input type="text" v-model="item.end_number" class="form-control" id="name12" placeholder="请输入完工数量">
+            <button v-on:click="updta()">提交</button>
+        </div>
+    </div>
+
+</div>
+<script src="../js/vue.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/axios.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8011/work/"
+    new Vue({
+        el: '#app',
+        data: {
+            dp: 'none',
+            message: 'Hello Vue.js!',
+            item: {
+                "id": "1",
+                "order_status": "未完成",
+                "order_type": "采购",
+                "order_odd": "65535",
+                "dept": "销售部",
+                "nature": "普通工单",
+                "material_code": "BM001",
+                "material_name": "钢筋",
+                "order_number": 200,
+                "w_order_number": 30,
+                "end_number": 25,
+                "place_data": "2022-11-30 22:06:45"
+            },
+            orderList: [{
+                "id": "1",
+                "order_status": "未完成",
+                "order_type": "采购",
+                "order_odd": "65535",
+                "dept": "销售部",
+                "nature": "普通工单",
+                "material_code": "BM001",
+                "material_name": "钢筋",
+                "order_number": 200,
+                "w_order_number": 30,
+                "end_number": 25,
+                "place_data": "2022-11-30 22:06:45"
+            },{
+                "id": "1",
+                "order_status": "未完成",
+                "order_type": "采购",
+                "order_odd": "65535",
+                "dept": "销售部",
+                "nature": "普通工单",
+                "material_code": "BM001",
+                "material_name": "钢筋",
+                "order_number": 200,
+                "w_order_number": 30,
+                "end_number": 25,
+                "place_data": "2022-11-30 22:06:45"
+            }]
+
+        },
+        created() {
+            axios.get(baseUrl + 'list')
+                .then(function (response) {
+                    console.log(response.data)
+                    this.orderList = response.data.data
+                })
+        },
+        beforeCreate() {
+
+            axios.get(baseUrl + 'list')
+                .then(function (response) {
+                    console.log(response.data)
+                    this.orderList = response.data.data
+                })
+
+        },
+        mounted() {
+
+            axios.get(baseUrl + 'list')
+                .then(function (response) {
+                    console.log(response.data)
+                    this.orderList = response.data.data
+                })
+
+        },
+        updated() {
+            console.log('updated')
+        },
+        activated() {
+
+            console.log('实例被激活时使用，用于重复激活一个实例的时候')
+
+        },
+        methods: {
+            del: function (order) {
+                axios.get(baseUrl + 'delete?id=' + order.id)
+                    .then(function (response) {
+                        alert(response.data.msg)
+                    })
+
+            },
+            upd: function (order) {
+                this.item = order;
+            },
+            updta: function () {
+                axios.post((baseUrl + '/update', this.item)
+                    .then(function (response) {
+                        console.log(response);
+                    }))
+            }
+        },
+
+
+    })
+</script>
+</body>
+</html>

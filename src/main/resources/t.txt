@@ -1,0 +1,42 @@
+placeholder="工单号"
+placeholder="工单状态"
+placeholder="工单类型"
+placeholder="订单单号"
+placeholder="部门"
+placeholder="性质"
+placeholder="物料编码"
+placeholder="物料名称"
+placeholder="订单数量"
+placeholder="工单数量"
+placeholder="完工数量"
+placeholder="下单日期"
+
+
+
+<el-form-item label="工单号" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="工单状态" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="工单类型" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="订单单号" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="部门" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="性质" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="物料编码 " :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="物料名称" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="订单数量" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="工单数量" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="完工数量" :label-width="120"><el-input ></el-input></el-form-item>
+<el-form-item label="下单日期" :label-width="120"><el-input ></el-input></el-form-item>
+
+
+
+order.id
+order.order_status
+order.order_type
+order.order_odd
+order.dept
+order.nature
+order.material_code
+order.material_name
+order.order_number
+order.w_order_number
+order.end_number
+order.place_data
