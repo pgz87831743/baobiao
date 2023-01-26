@@ -1,0 +1,5 @@
+/target/**
+/src/main/resources/static/workorder/node_modules/**
+/.idea/**
+# 项目排除路径
+/src/main/resources/static/page/js/
