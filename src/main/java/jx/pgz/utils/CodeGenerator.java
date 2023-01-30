@@ -11,10 +11,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author pengmf
- * @since 2021/9/22
- */
+
 public class CodeGenerator {
 
 

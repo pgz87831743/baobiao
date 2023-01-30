@@ -1,24 +1,29 @@
 import VueRouter from "vue-router";
-import CardSwiping from "@/components/CardSwiping";
-import CheckData from "@/components/CheckData";
-import CheckSpeech from "@/components/CheckSpeech";
+import LoginFrom from "@/components/user/LoginFrom";
+import HelloWord from "@/components/manager/HelloWord";
+import ErrorPage from "@/components/error/ErrorPage";
 
 
 export default new VueRouter({
-    mode:'hash',
+    mode: 'hash',
     routes: [
         {
-            path: '/CardSwiping',
-            component: CardSwiping
+            path: '/',
+            component: LoginFrom
         },
         {
-            path: '/CheckSpeech',
-            component: CheckSpeech
+            path: '/login',
+            component: LoginFrom
         }
         ,
         {
-            path: '/CheckData',
-            component: CheckData
+            path: '/HelloWord',
+            component: HelloWord
+        }
+        ,
+        {
+            path: '/error',
+            component: ErrorPage
         }
     ]
 })

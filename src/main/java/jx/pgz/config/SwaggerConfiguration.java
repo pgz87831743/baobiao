@@ -16,10 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author pengmf
- * @since 2021/9/22
- */
+
 @Configuration
 @EnableSwagger2
 @EnableSwaggerBootstrapUI

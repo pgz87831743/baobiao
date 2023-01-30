@@ -1,9 +1,6 @@
 package jx.pgz.utils;
 
-/**
- * @author pengmf
- * @since 2021/10/21
- */
+
 public class SnowFlake {
     /**
      * 起始的时间戳

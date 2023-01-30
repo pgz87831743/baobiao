@@ -13,10 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * @author pengmf
- *
- */
+
 @Configuration
 public class WebAppConfigure implements WebMvcConfigurer {
 

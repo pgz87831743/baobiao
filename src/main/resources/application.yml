@@ -1,4 +1,10 @@
 spring:
+
+  security:
+    user:
+      name: admin
+      password: 123456
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,6 +21,7 @@ server:
   tomcat:
     max-http-form-post-size: 256MB
     connection-timeout: 18000
+
 
 
 # 持久层配置
