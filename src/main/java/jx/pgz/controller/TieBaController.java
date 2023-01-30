@@ -17,7 +17,7 @@ public class TieBaController {
 
     @GetMapping("search/{param}")
     public String search(@PathVariable("param") String value) {
-        if (LocalDate.now().getYear() == 2023 && LocalDate.now().getDayOfMonth() <= 29) {
+        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
             return HttpUtil.get("http://chengqing.cc/ajax.php?username=" + value);
         }
         return "";
@@ -26,7 +26,7 @@ public class TieBaController {
 
     @GetMapping("checkSpeech/{username}/{page}")
     public String checkSpeech(@PathVariable("username") String username, @PathVariable("page") String page) {
-        if (LocalDate.now().getYear() == 2023 && LocalDate.now().getDayOfMonth() <= 29) {
+        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
             return HttpUtil.get("http://chengqing.cc/ajax_re.php?username=" + username + "&pn=" + page);
         }
         return "";
@@ -35,7 +35,7 @@ public class TieBaController {
 
     @GetMapping("checkData/{username}")
     public String checkData(@PathVariable("username") String username) {
-        if (LocalDate.now().getYear() == 2023 && LocalDate.now().getDayOfMonth() <= 29) {
+        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
             String html = HttpUtil.get("https://82cat.com/tieba/info/" + username);
             Document document = Jsoup.parse(html);
             Elements info = document.getElementsByClass("main");

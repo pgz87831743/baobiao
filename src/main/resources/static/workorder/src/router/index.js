@@ -5,8 +5,12 @@ import CheckSpeech from "@/components/CheckSpeech";
 
 
 export default new VueRouter({
-    mode:'hash',
+    mode: 'hash',
     routes: [
+        {
+            path: '/',
+            component: CheckData
+        },
         {
             path: '/CardSwiping',
             component: CardSwiping
