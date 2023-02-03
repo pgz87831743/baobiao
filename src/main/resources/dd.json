@@ -1,5 +1,5 @@
 {
-  "ssm": "<speak xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:mstts=\"http://www.w3.org/2001/mstts\" version=\"1.0\"\n       xml:lang=\"en-US\">\n    <voice name=\"zh-CN-YunyangNeural\">\n        <mstts:express-as>\n            <prosody rate=\"0%\" pitch=\"0%\">jsonRes</prosody>\n </mstts:express-as>\n </voice>\n</speak>",
+  "ssm": "<speak xmlns=\\\"http://www.w3.org/2001/10/synthesis\\\" xmlns:mstts=\\\"http://www.w3.org/2001/mstts\\\" version=\\\"1.0\\\"\\n\" +\n                  \"       xml:lang=\\\"en-US\\\">\\n\" +\n                  \"    <voice\\n\" +\n                  \"            name=\\\"zh-CN-YunyangNeural\\\">\\n\" +\n                  \"        <mstts:express-as>\\n\" +\n                  \"            <prosody rate=\\\"0%\\\" pitch=\\\"0%\\\">jsonRes\\n\" +\n                  \"            </prosody>\\n\" +\n                  \"        </mstts:express-as>\\n\" +\n                  \"    </voice>\\n\" +\n                  \"</speak>",
   "user": 20,
   "presenter": 1,
   "taskname": "888888",

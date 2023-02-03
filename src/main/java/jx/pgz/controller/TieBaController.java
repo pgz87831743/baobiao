@@ -1,48 +1,24 @@
 package jx.pgz.controller;
 
-import cn.hutool.http.HttpUtil;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jx.pgz.model.DetailInfo;
+import jx.pgz.utils.Result;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("tb")
 public class TieBaController {
 
-    @GetMapping("search/{param}")
-    public String search(@PathVariable("param") String value) {
-        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
-            return HttpUtil.get("http://chengqing.cc/ajax.php?username=" + value);
-        }
-        return "";
+
+    @PostMapping("test")
+    public Result<String> test(@RequestParam("item") String item, @RequestParam("info") String info, HttpServletRequest request) {
+        return Result.success(null);
     }
 
 
-    @GetMapping("checkSpeech/{username}/{page}")
-    public String checkSpeech(@PathVariable("username") String username, @PathVariable("page") String page) {
-        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
-            return HttpUtil.get("http://chengqing.cc/ajax_re.php?username=" + username + "&pn=" + page);
-        }
-        return "";
-
+    @PostMapping("test2")
+    public Result<DetailInfo> test2(@RequestBody DetailInfo detailInfo) {
+        return Result.success(detailInfo);
     }
-
-    @GetMapping("checkData/{username}")
-    public String checkData(@PathVariable("username") String username) {
-        if (LocalDate.now().isBefore(LocalDate.of(2023, 2, 5))) {
-            String html = HttpUtil.get("https://82cat.com/tieba/info/" + username);
-            Document document = Jsoup.parse(html);
-            Elements info = document.getElementsByClass("main");
-            return info.outerHtml().contains(username) ? info.outerHtml() : "<h2>暂无" + username + "数据</h1>";
-        }
-        return "";
-    }
-
-
 }
