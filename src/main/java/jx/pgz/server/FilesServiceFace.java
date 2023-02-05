@@ -1,6 +1,6 @@
 package jx.pgz.server;
 
-import jx.pgz.dao.entity.Files;
+import jx.pgz.dao.sys.entity.SysFile;
 import jx.pgz.enums.FileTypeEnum;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FilesServiceFace {
 
-    List<Files> upload(MultipartFile[] files, FileTypeEnum fileTypeEnum);
+    List<SysFile> upload(MultipartFile[] files, FileTypeEnum fileTypeEnum);
 
     void download(String fileId);
 

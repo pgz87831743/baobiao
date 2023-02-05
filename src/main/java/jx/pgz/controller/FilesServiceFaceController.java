@@ -1,10 +1,14 @@
 package jx.pgz.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import jx.pgz.dao.entity.Files;
+import jx.pgz.dao.sys.entity.SysFile;
 import jx.pgz.enums.FileTypeEnum;
 import jx.pgz.server.FilesServiceFace;
+import jx.pgz.utils.ShiroUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/file")
 @RestController
+@Api(tags = "文件管理")
 public class FilesServiceFaceController {
 
     @Resource
@@ -22,7 +27,10 @@ public class FilesServiceFaceController {
 
     @PostMapping("upload")
     @ApiOperation(value = "文件上传")
-    public List<Files> list(@ApiParam("文件") MultipartFile[] files, @ApiParam("文件类型") FileTypeEnum fileTypeEnum) {
+    @RequiresPermissions("file:upload")
+    public List<SysFile> list(@ApiParam("文件") MultipartFile[] files, @ApiParam("文件类型") FileTypeEnum fileTypeEnum) {
+        System.out.println(SecurityUtils.getSubject().getSession());
+        System.out.println(ShiroUtil.getUser());
         return filesServiceFace.upload(files, fileTypeEnum);
     }
 

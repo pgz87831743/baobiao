@@ -22,11 +22,11 @@ public class CodeGenerator {
     public static void main(String[] args) {
 
 
-        String url ="jdbc:mysql://localhost:3306/bk?characterEncoding=UTF-8";
-        String driverName ="com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/basic_service?characterEncoding=UTF-8";
+        String driverName = "com.mysql.cj.jdbc.Driver";
         String username ="root";
-        String password ="123456";
-        String[] table =new String[]{"p_files"};
+        String password = "123456";
+        String[] table = new String[]{"sys_file"};
 
 
         // 代码生成器
@@ -37,7 +37,7 @@ public class CodeGenerator {
         gc.setAuthor("");
         gc.setOpen(false);
         gc.setSwagger2(false);
-        gc.setIdType(IdType.ASSIGN_ID);
+        gc.setIdType(IdType.AUTO);
         gc.setServiceName("%sService");
         mpg.setGlobalConfig(gc);
         // 数据源配置
@@ -51,17 +51,17 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("dao");
-        pc.setParent("jx.pgz");
+        pc.setModuleName("sysnew");
+        pc.setParent("jx.pgz.dao");
         mpg.setPackageInfo(pc);
 
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude(table);
+        //  strategy.setInclude(table);
 
-        strategy.setTablePrefix("p_");
+//        strategy.setTablePrefix("p_");
 
 
         strategy.setLogicDeleteFieldName("del_flag");

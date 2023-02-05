@@ -1,7 +1,8 @@
 package jx.pgz.server.impl;
 
-import jx.pgz.dao.entity.Files;
-import jx.pgz.dao.service.FilesService;
+
+import jx.pgz.dao.sys.entity.SysFile;
+import jx.pgz.dao.sys.service.SysFileService;
 import jx.pgz.enums.FileTypeEnum;
 import jx.pgz.server.FilesServiceFace;
 import org.springframework.beans.factory.InitializingBean;
@@ -24,7 +25,7 @@ import java.util.Objects;
 public class FilesServiceFaceImpl implements FilesServiceFace, InitializingBean {
 
     @Resource
-    FilesService filesService;
+    SysFileService filesService;
 
 
     @Value("${attachment.rootPath}")
@@ -41,11 +42,11 @@ public class FilesServiceFaceImpl implements FilesServiceFace, InitializingBean 
 
 
     @Override
-    public List<Files> upload(MultipartFile[] files, FileTypeEnum fileTypeEnum) {
+    public List<SysFile> upload(MultipartFile[] files, FileTypeEnum fileTypeEnum) {
 
-        List<Files> filesInfo = new ArrayList<>();
+        List<SysFile> filesInfo = new ArrayList<>();
         for (MultipartFile file : files) {
-            Files fileSource = new Files();
+            SysFile fileSource = new SysFile();
             try (InputStream in = file.getInputStream()) {
                 String md5Hex = DigestUtils.md5DigestAsHex(in);
                 String suffix = Objects.requireNonNull(file.getOriginalFilename()).substring(file.getOriginalFilename().indexOf("."));
@@ -79,7 +80,7 @@ public class FilesServiceFaceImpl implements FilesServiceFace, InitializingBean 
 
     @Override
     public void download(String fileId) {
-        Files attachment = filesService.getById(fileId);
+        SysFile attachment = filesService.getById(fileId);
         if (attachment != null) {
             String filePath = this.filePath + attachment.getPath();
             byte[] bytes;
@@ -103,7 +104,7 @@ public class FilesServiceFaceImpl implements FilesServiceFace, InitializingBean 
 
     @Override
     public boolean delete(String fileId) {
-        Files files = filesService.getById(fileId);
+        SysFile files = filesService.getById(fileId);
         if (files != null) {
             String filePath = this.filePath + files.getPath();
             File file = new File(filePath);
